@@ -20,12 +20,21 @@ let mobile_state = {1: {top:1, left: 1,},
 
 
 if (window.mobilecheck()){
-    $("#not").mouseover()
+    $("#not").mouseover(mobiHandler)
 }else{
     $("body").mousemove(webHandler)
 }
 
-function webHandler(event){
+function mobiHandler(event){
+    event.prevenDefault()
+    mobileState = mobileState % 4 + 1 
+
+    $("#not").css({
+        top: '$(mobileState[mobileState].top * 50)%',
+        left: '$(mobileState[mobileState].left * 50)%',
+        position: 'absolute'
+    })
+
     let button = $("#not").position()
 
     button.right = button.left + 100
